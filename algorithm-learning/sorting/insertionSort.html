@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 相较于选择排序法 最好的情况当本身是有序数组时，可以O(n),
+        function insertionSort1 (arr) {
+            for(let i = 0; i < arr.length; i++) {
+                for (j = i; j > 0; j--) {
+                    if(arr[j] < arr[j-1]) {
+                        temp = arr[j];
+                        arr[j] = arr[j-1];
+                        arr[j-1] = temp;
+                    }
+                    else {
+                        break;
+                    }
+                }
+            }
+            return arr;
+        }
+
+        // 从后往前换 倒叙排放
+        function insertionSort3 (arr) {
+            for(let i = arr.length-1; i > -1; i--) {
+                let t = arr[i];
+                var j;
+                for(j = i; j < (arr.length) && t > arr[j + 1]; j++) {
+                    arr[j] = arr[j+1];
+                }
+                arr[j] = t    
+            }
+            return arr;
+        }
+        // 优化 直接找到需要交换的index
+        function insertionSort2 (arr) {
+            for(let i = 0; i < arr.length; i++) {
+                let t = arr[i];
+                var j;
+                for (j = i; j > 0 && t < arr[j-1] ; j--) {
+                    arr[j] = arr[j-1];
+                }
+                arr[j] = t;
+            }
+            return arr;
+        }
+        let arr = [10, 9,10,-1];
+        console.log(insertionSort3(arr));        
+    </script>
+</body>
+</html>
